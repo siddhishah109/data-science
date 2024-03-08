@@ -15,19 +15,50 @@ function generateForecast(data, windowSize) {
     return forecastedData;
 }
 
-function TrendGraph({ data, windowSize = 3 }) {
+function TrendGraph({ data, windowSize = 3, xAxisProps = {}, yAxisProps = {}, cartesianGridProps = {}, tooltipProps = {}, legendProps = {}, lineProps = {}, ...rest }) {
     const forecastedData = generateForecast(data, windowSize);
 
     return (
-        <LineChart width={500} height={300} data={forecastedData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+        <LineChart width={500} height={300} data={forecastedData} {...rest}>
+            <CartesianGrid {...cartesianGridProps} />
+            <XAxis {...xAxisProps} />
+            <YAxis {...yAxisProps} />
+            <Tooltip {...tooltipProps} />
+            <Legend {...legendProps} />
+            <Line type="monotone" dataKey="value" {...lineProps} />
         </LineChart>
     );
 }
 
 export default TrendGraph;
+
+
+
+{/* 
+
+
+The purpose of the provided React component, TrendGraph, is to generate a line chart with the capability to forecast future data points based on a moving average window. It's built using the Recharts library, a popular charting library for React applications.
+
+
+ example use: 
+
+<TrendGraph
+    data={data}
+    width={600}
+    height={400}
+    margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
+    lineColor="#ff0000"
+    strokeWidth={2}
+    xAxisProps={{
+        dataKey: 'name',
+        label: { value: 'Month', position: 'insideBottomRight', offset: -10 }
+    }}
+    yAxisProps={{ label: { value: 'Value', angle: -90, position: 'insideLeft' } }}
+    cartesianGridProps={{ strokeDasharray: '3 3', vertical: false }}
+    tooltipProps={{ cursor: { stroke: 'red', strokeWidth: 2 } }}
+    legendProps={{ align: 'center', verticalAlign: 'top', height: 36 }}
+    lineProps={{ stroke: '#ff0000', strokeWidth: 2, dot: false }}
+/> 
+
+
+*/}
