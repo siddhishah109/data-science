@@ -1,11 +1,13 @@
-from flask import Flask, request, jsonify
+# backend/routes.py
+
+from flask import Blueprint, jsonify, request
 import pandas as pd
 from model import train_arima_model, train_sarima_model
 
-app = Flask(__name__)
+forecast_arima = Blueprint('forecast_arima', __name__)
 
-@app.route('/forecast/arima', methods=['POST'])
-def forecast_arima():
+@forecast_arima.route('/forecast/arima', methods=['POST'])
+def forecast_arima_route():
     data = request.json.get('data')
     if data is None:
         return jsonify({'error': 'No data provided'}), 400
@@ -26,8 +28,11 @@ def forecast_arima():
 
     return jsonify({'forecast': forecast_result.tolist()})
 
-@app.route('/forecast/sarima', methods=['POST'])
-def forecast_sarima():
+
+forecast_sarima = Blueprint('forecast_sarima', __name__)
+
+@forecast_sarima.route('/forecast/sarima', methods=['POST'])
+def forecast_sarima_route():
     data = request.json.get('data')
     if data is None:
         return jsonify({'error': 'No data provided'}), 400
@@ -48,6 +53,3 @@ def forecast_sarima():
     forecast_result = sarima_model.forecast(steps=steps)
 
     return jsonify({'forecast': forecast_result.tolist()})
-
-if __name__ == '__main__':
-    app.run(debug=True)
