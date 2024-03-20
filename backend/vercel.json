@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "vercel_function.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      { "src": "/forecast/arima", "dest": "vercel_function" },
+      { "src": "/forecast/sarima", "dest": "vercel_function" },
+      { "src": "/", "dest": "vercel_function" }
+    ]
+  }
+  
