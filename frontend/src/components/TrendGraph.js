@@ -8,14 +8,14 @@ function generateForecast(data, windowSize) {
         if (i >= windowSize) {
             const sum = data.slice(i - windowSize, i).reduce((acc, val) => acc + val.value, 0);
             const average = sum / windowSize;
-            forecastedData.push({ name: `Forecast ${i}`, value: average });
+            forecastedData.push({ name: `Fcst ${i}`, value: average });
         }
     }
 
     return forecastedData;
 }
 
-function TrendGraph({ data, windowSize = 3, xAxisProps = {}, yAxisProps = {}, cartesianGridProps = {}, tooltipProps = {}, legendProps = {}, lineProps = {}, ...rest }) {
+function TrendGraph({ data, windowSize = 2, xAxisProps = {}, yAxisProps = {}, cartesianGridProps = {}, tooltipProps = {}, legendProps = {}, lineProps = {}, ...rest }) {
     const forecastedData = generateForecast(data, windowSize);
 
     return (
@@ -34,6 +34,7 @@ export default TrendGraph;
 
 
 
+
 {/* 
 
 
@@ -46,6 +47,7 @@ The purpose of the provided React component, TrendGraph, is to generate a line c
     data={data}
     width={600}
     height={400}
+    windowSize={3}
     margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
     lineColor="#ff0000"
     strokeWidth={2}

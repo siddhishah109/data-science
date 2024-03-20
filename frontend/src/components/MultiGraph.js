@@ -1,10 +1,10 @@
 import React from 'react';
 import { LineChart, Line, BarChart, Bar, AreaChart, Area, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const MultiGraph = ({ lineData, barData, areaData, scatterData, lineProps,lineChartProps,  barProps,barChartProps, areaProps,areaChartProps ,scatterProps, scatterChartProps,xAxisProps, yAxisProps, cartesianGridProps, tooltipProps, legendProps, value }) => {
+const MultiGraph = ({ lineData, barData, areaData, scatterData, lineProps,lineChartProps,  barProps,barChartProps, areaProps,areaChartProps ,scatterProps, scatterChartProps,xAxisProps, yAxisProps, cartesianGridProps, tooltipProps, legendProps, defaultDataKey }) => {
   const renderLineChart = () => {
     if (lineData) {
-      const dataKey = lineProps && lineProps.dataKey ? lineProps.dataKey : value;
+      const dataKey = lineProps && lineProps.dataKey ? lineProps.dataKey : defaultDataKey;
       return (
         <LineChart data={lineData} {...lineChartProps} >
           <CartesianGrid {...cartesianGridProps} />
@@ -21,7 +21,7 @@ const MultiGraph = ({ lineData, barData, areaData, scatterData, lineProps,lineCh
 
   const renderBarChart = () => {
     if (barData) {
-      const dataKey = barProps && barProps.dataKey ? barProps.dataKey : value;
+      const dataKey = barProps && barProps.dataKey ? barProps.dataKey : defaultDataKey;
       return (
         <BarChart data={barData} {...barChartProps}>
           <CartesianGrid {...cartesianGridProps} />
@@ -38,7 +38,7 @@ const MultiGraph = ({ lineData, barData, areaData, scatterData, lineProps,lineCh
 
   const renderAreaChart = () => {
     if (areaData) {
-      const dataKey = areaProps && areaProps.dataKey ? areaProps.dataKey : value;
+      const dataKey = areaProps && areaProps.dataKey ? areaProps.dataKey : defaultDataKey;
       return (
         <AreaChart data={areaData} {...areaChartProps}>
           <CartesianGrid {...cartesianGridProps} />
@@ -55,7 +55,7 @@ const MultiGraph = ({ lineData, barData, areaData, scatterData, lineProps,lineCh
 
   const renderScatterChart = () => {
     if (scatterData) {
-      const dataKey = scatterProps && scatterProps.dataKey ? scatterProps.dataKey : value;
+      const dataKey = scatterProps && scatterProps.dataKey ? scatterProps.dataKey : defaultDataKey;
       return (
         <ScatterChart data={scatterData} {...scatterChartProps}>
           <CartesianGrid {...cartesianGridProps} />
