@@ -1,5 +1,6 @@
 import statsmodels.api as sm
 import pandas as pd
+from statsmodels.tsa.stattools import pacf
 
 def train_arima_model(data, order=(1, 1, 1)):
     arima_model = sm.tsa.ARIMA(data, order=order).fit()
@@ -18,4 +19,18 @@ def calculate_autocorrelation(data, lags):
         
         return autocorr
     except Exception as e:
+        return None
+    
+def calculate_pacf(data, lags):
+    try:
+        data_series = pd.Series(data)
+        print("Data series:", data_series)
+        print("Number of lags:", lags)
+     
+        pacf_values = pacf(data_series, nlags=lags, method='ols')
+        print("PACF values:", pacf_values)
+        
+        return pacf_values.tolist()
+    except Exception as e:
+        print("Error:", e)
         return None
