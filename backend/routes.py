@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 import pandas as pd
-from model import train_arima_model, train_sarima_model , calculate_autocorrelation ,calculate_pacf
+from model import train_arima_model, train_sarima_model , calculate_autocorrelation ,calculate_pacf ,calculate_acf
 
 forecast_arima = Blueprint('forecast_arima', __name__)
 
@@ -90,3 +90,23 @@ def pacf_route():
         return jsonify({'pacf_values': pacf_values})
     else:
         return jsonify({'error': 'Failed to calculate PACF.'}), 500
+    
+
+acf = Blueprint('acf', __name__)
+
+@acf.route('/acf', methods=['POST'])
+def acf_route():
+    data = request.json.get('data')
+    if data is None:
+        return jsonify({'error': 'No data provided'}), 400
+
+    data_series = pd.Series(data)
+
+    lags = request.json.get('lags', 10)
+
+    acf_values = calculate_acf(data_series, lags)
+
+    if acf_values is not None:
+        return jsonify({'acf_values': acf_values})
+    else:
+        return jsonify({'error': 'Failed to calculate ACF.'}), 500

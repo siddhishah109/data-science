@@ -1,6 +1,6 @@
 import statsmodels.api as sm
 import pandas as pd
-from statsmodels.tsa.stattools import pacf
+from statsmodels.tsa.stattools import pacf, acf
 
 def train_arima_model(data, order=(1, 1, 1)):
     arima_model = sm.tsa.ARIMA(data, order=order).fit()
@@ -33,4 +33,16 @@ def calculate_pacf(data, lags):
         return pacf_values.tolist()
     except Exception as e:
         print("Error:", e)
+        return None
+ 
+
+def calculate_acf(data, lags):
+    try:
+        data_series = pd.Series(data)
+        
+        # Calculate ACF
+        acf_values = acf(data_series, nlags=lags)
+        
+        return acf_values.tolist()
+    except Exception as e:
         return None
