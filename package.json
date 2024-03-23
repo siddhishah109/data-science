@@ -1,6 +1,6 @@
 {
   "name": "data-science",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "data science ",
   "main": "index.js",
   "scripts": {
