@@ -10,4 +10,4 @@ import ARIMAForecastChart from './src/components/Forcasting/ARIMAForecastChart';
 import SARIMAForecastChart from './src/components/Forcasting/SARIMAForecastChart';
 
 
-export { TrendGraph , MultiGraph , LinearTrendChart , MovingAverageTrendChart , ExponentialSmoothingChart , OutlierIQRScatterChart , OutlierZScoreScatterChart , OutlierKNNScatterChart , ARIMAForecastChart , SARIMAForecastChart };
+export default{ TrendGraph , MultiGraph , LinearTrendChart , MovingAverageTrendChart , ExponentialSmoothingChart , OutlierIQRScatterChart , OutlierZScoreScatterChart , OutlierKNNScatterChart , ARIMAForecastChart , SARIMAForecastChart };
