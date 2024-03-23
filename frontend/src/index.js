@@ -6,5 +6,8 @@ import ExponentialSmoothingChart from './components/Trends/ExponentialSmoothingC
 import OutlierIQRScatterChart from './Outlier/OutlierIQRScatterChart';
 import OutlierZScoreScatterChart from './Outlier/OutlierZScoreScatterChart';
 import OutlierKNNScatterChart from './Outlier/OutlierKNNScatterChart';
+import ARIMAForecastChart from './components/Forcasting/ARIMAForecastChart';
+import SARIMAForecastChart from './components/Forcasting/SARIMAForecastChart';
 
-export { TrendGraph , MultiGraph , LinearTrendChart , MovingAverageTrendChart , ExponentialSmoothingChart , OutlierIQRScatterChart , OutlierZScoreScatterChart , OutlierKNNScatterChart};
+
+export { TrendGraph , MultiGraph , LinearTrendChart , MovingAverageTrendChart , ExponentialSmoothingChart , OutlierIQRScatterChart , OutlierZScoreScatterChart , OutlierKNNScatterChart , ARIMAForecastChart , SARIMAForecastChart };
